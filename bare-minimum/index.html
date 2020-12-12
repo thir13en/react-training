@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>React Bare Minimum</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="{{page description}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+    <div id="app"></div>
+</body>
+  <script type="text/javascript" src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script type="text/javascript" src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script type="text/javascript">
+  	const Universe = (props) => {
+  		// You need Babel here for JSX to work
+  		return (
+			<div className="universe">
+		    	<h3 className="name">{props.name}</h3>
+		    </div>
+		);
+  	};
+
+  	const app = (
+  		<>
+  			<Universe name="C-222" />
+  			<Universe name="C-137" />
+  		</>
+	);
+  	// Here's how you use props
+  	ReactDOM.render(app, document.querySelector('#app'));
+  </script>
+</html>

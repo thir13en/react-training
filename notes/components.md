@@ -35,3 +35,31 @@ const person = (props) => {
 
 export default person;
 ```
+
+### State
+Every element that extends from `Component` has a property named `state`
+```javascript
+import React, { Component } from 'react';
+
+
+class Person extends Component {
+	state = {
+		friends: [{ name: 'Tommy', age, 29}],
+	}
+
+	render() {
+		return (
+			<p>I'm  aperson and I am {props.age} years old</p>
+			<p>{props.children}</p> // Some content...
+			<p>Accessing state: {this.state.friends[0].name}</p> // Some content...
+		);
+	}
+
+}
+
+export default person;
+```
+To manipulate the state, you use the `setState` utility.
+
+### Rendering stategy
+React re-renders the DOM for every single change in `state` or `props`.

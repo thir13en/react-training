@@ -63,3 +63,16 @@ To manipulate the state, you use the `setState` utility.
 
 ### Rendering stategy
 React re-renders the DOM for every single change in `state` or `props`.
+
+### Stateful vs Stateless
+Functional components that only receive data and present it in a structured way, are **stateless** or **dummy/presentational** components, you should have as much of these as possible. On the other hand, **stateful, smart** components, contain state and business logic to process data, you want to restrict the appearance of those in your system.
+
+### Common patterns
+#### Passing handlers by reference
+When you want to run logic of a handler contained in a parent component, you can pass the reference of that function to the child element in a prop, and then the child can run it.
+#### Passing arguments to binded functions
+Since you are passing functions by reference as event handlers, you cannot directly pass the arguments, rather you need to use the `bind` method of the function prototype to pass the arguments you wish to:
+```jsx
+<p onClick={this.myFunction.bind(this, 'arg1', 'arg2')}>Element</p>
+```
+Bear in mind that this is a very efficient syntax vs passing an anonymous function and returning the function call in it.

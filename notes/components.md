@@ -76,3 +76,31 @@ Since you are passing functions by reference as event handlers, you cannot direc
 <p onClick={this.myFunction.bind(this, 'arg1', 'arg2')}>Element</p>
 ```
 Bear in mind that this is a very efficient syntax vs passing an anonymous function and returning the function call in it.
+
+### Two way binding
+You can create a function in the parent component that receives events from the child, like so:
+```jsx
+import React, { Component } from 'react';
+
+
+class People extends Component {
+	state = {
+		name: 'Mike',
+	};
+	const nameChangedHandler = (event) => {
+		this.setState({ name: event.target });
+	}
+	return (
+		<Person name={props.name} changed={nameChangedHandler} />
+	);
+}
+
+const Person = (props) => {
+	return (
+		<>
+			<p>I am {props.name}</p>
+			<input type="text" name="name" onChange={props.changed} value={props.name}/>
+		</>
+	);
+}
+```

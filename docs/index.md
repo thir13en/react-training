@@ -7,3 +7,4 @@
 1. [Bootstrapping](bootstrapping.md)
 1. [Hooks](hooks.md)
 1. [JSX](jsx.md)
+1. [Styling](styling.md)

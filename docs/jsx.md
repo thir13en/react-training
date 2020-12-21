@@ -22,3 +22,13 @@ React.createElement('div', { className: 'App' }, React.createElement('h1',, null
 
 ### Restrictions
 Remember JSX is not html, that's why some attributes such as `class` can be used in detriment of `className`. This means that we actually are using the `tags` and `attributes` that is being provided by react. Another restriction is that we actually need to return **one** root element, so we need to wrap our content.
+
+### Conditional rendering
+For if statements:
+```jsx
+{ boolean && <p>My Jsx Block</p> } // will render the block when boolean is true
+```
+For ir else
+```jsx
+{ boolean ? <p>My Jsx Block</p> : <p>The else block</p> }
+```

@@ -32,3 +32,18 @@ For ir else
 ```jsx
 { boolean ? <p>My Jsx Block</p> : <p>The else block</p> }
 ```
+Another way to output conditional content is to assign `JSX` code or a `null` value to a certain variable:
+```jsx
+render() {
+	let persons = null; 
+	if (this.state.peopleVisible) {
+		persons = (
+			<p>I am a female</p>
+			<p>Hey, I am a dude</p>
+			<p>I am transgender, bruh</p>
+		);
+	}
+
+	return persons;
+}
+```

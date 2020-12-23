@@ -47,3 +47,6 @@ render() {
 	return persons;
 }
 ```
+
+### Transform Array to JSX element set
+You do it with the vanilla JavaScript `map` operator, where for every element, you map it to a JSX structure where the values are included in the appropriate spots.

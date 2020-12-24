@@ -50,3 +50,19 @@ render() {
 
 ### Transform Array to JSX element set
 You do it with the vanilla JavaScript `map` operator, where for every element, you map it to a JSX structure where the values are included in the appropriate spots.
+```javascript
+const persons = [
+	{ name: 'John', },
+	{ name: 'Anna', },
+	{ name: 'Natalia', },
+	{ name: 'Santi', },
+];
+
+render() {
+	return (
+		<>
+			{persons.map((person, index) => <Person key={index} name={person.name} />)}
+		</>
+	);
+}
+```

@@ -8,8 +8,14 @@
 # testing
 /coverage
 
+# linting
+.eslintcache
+
 # production
 /build
+
+# IDE
+.idea/
 
 # misc
 .DS_Store

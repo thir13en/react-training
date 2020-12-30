@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [countState, setCountState] = useState({
+    wordCount: 0,
+  });
+
+  const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setCountState({
+      wordCount: e.target.value.length,
+    });
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -19,6 +29,10 @@ function App() {
           Learn React
         </a>
       </header>
+      <section className={'App-body'}>
+        <input type="text" onChange={inputChangeHandler} />
+        <h2>{countState.wordCount}</h2>
+      </section>
     </div>
   );
 }

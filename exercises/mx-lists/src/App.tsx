@@ -1,15 +1,16 @@
 import React, { ChangeEvent, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Validation from './components/Validation/Validation';
 
 function App() {
-  const [countState, setCountState] = useState({
-    wordCount: 0,
+  const [inputState, setInputState] = useState({
+    word: '',
   });
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setCountState({
-      wordCount: e.target.value.length,
+    setInputState({
+      word: e.target.value,
     });
   };
 
@@ -31,7 +32,8 @@ function App() {
       </header>
       <section className={'App-body'}>
         <input type="text" onChange={inputChangeHandler} />
-        <h2>{countState.wordCount}</h2>
+        <h2>{inputState.word.length}</h2>
+        <Validation inputLength={inputState.word.length} />
       </section>
     </div>
   );

@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Validation from './components/Validation/Validation';
+import Char from './components/Char/Char';
 
 function App() {
   const [inputState, setInputState] = useState({
@@ -12,6 +13,10 @@ function App() {
     setInputState({
       word: e.target.value,
     });
+  };
+
+  const deleteLetterHandler = (pos: number) => {
+    console.log(pos);
   };
 
   return (
@@ -34,6 +39,15 @@ function App() {
         <input type="text" onChange={inputChangeHandler} />
         <h2>{inputState.word.length}</h2>
         <Validation inputLength={inputState.word.length} />
+        <div style={{ display: 'inline-block' }}>
+          {inputState.word.split('').map((letter: string, i: number) =>
+            <Char
+              key={i}
+              char={letter}
+              click={deleteLetterHandler}
+            />)
+          }
+        </div>
       </section>
     </div>
   );

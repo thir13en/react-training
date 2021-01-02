@@ -8,5 +8,6 @@
 1. [Bootstrapping](bootstrapping.md)
 1. [Hooks](hooks.md)
 1. [JSX](jsx.md)
+1. [Performance](performance.md)
 1. [Styling](styling.md)
 1. [Virtual DOM](virtual-dom.md)

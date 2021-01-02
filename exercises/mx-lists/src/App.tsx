@@ -39,7 +39,7 @@ function App() {
         </a>
       </header>
       <section className={'App-body'}>
-        <input type="text" onChange={inputChangeHandler} />
+        <input type="text" onChange={inputChangeHandler} value={inputState.word} />
         <h2>{inputState.word.length}</h2>
         <Validation inputLength={inputState.word.length} />
         <div style={{ display: 'inline-block' }}>

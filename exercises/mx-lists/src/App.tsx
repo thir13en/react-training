@@ -16,7 +16,10 @@ function App() {
   };
 
   const deleteLetterHandler = (pos: number) => {
-    console.log(pos);
+    const newWordArr = inputState.word.split('');
+    newWordArr.splice(pos, 1);
+
+    setInputState({ word: newWordArr.join('') });
   };
 
   return (
@@ -44,7 +47,7 @@ function App() {
             <Char
               key={i}
               char={letter}
-              click={deleteLetterHandler}
+              deleteElement={() => deleteLetterHandler(i)}
             />)
           }
         </div>

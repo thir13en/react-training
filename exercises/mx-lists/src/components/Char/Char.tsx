@@ -7,6 +7,7 @@ const letterStyle = {
 	border: '1px solid purple',
 };
 
-const Char = ({ char }: { char: string }) => (<span style={letterStyle}>{ char }</span>)
+const Char = ({ char, deleteElement }: { char: string, deleteElement: any, key: number }) =>
+	(<span style={letterStyle} onClick={deleteElement}>{ char }</span>)
 
 export default Char;

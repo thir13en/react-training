@@ -15,4 +15,4 @@ const buttonStyle = {
 
 const Button = () => <button style={buttonStyle}>I'm Styles</button>
 ```
-This makes the style **fully scoped** to the current component, but on the other hand we miss the possibility of using advance css features such as `pseudo-selectors`.
+This makes the style **fully scoped** to the current component, but on the other hand **we miss the possibility of using advance css features such as `pseudo-selectors`**.

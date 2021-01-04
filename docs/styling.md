@@ -16,3 +16,18 @@ const buttonStyle = {
 const Button = () => <button style={buttonStyle}>I'm Styles</button>
 ```
 This makes the style **fully scoped** to the current component, but on the other hand **we miss the possibility of using advance css features such as `pseudo-selectors`**.
+
+### Dynamic Styles
+With the inline styles that you can inject in your JSX code, you can evaluate them with any JavaScript expressions, or modify the contents of the style object at runtime.
+```javascript
+const style = {
+	backgroundColor: green,
+}
+
+if (props.isLoaded) {
+	style.backgroundColor = blue;
+}
+return (
+	<button style={style} />
+);
+```

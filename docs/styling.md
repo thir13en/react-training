@@ -31,3 +31,20 @@ return (
 	<button style={style} />
 );
 ```
+
+### Dynamic Classes
+Here is a nice pattern to dynamically assign classes
+```javascript
+const classes = [];
+
+if (condition) {
+	classes.push('first-class');
+}
+if (condition2) {
+	classes.push('second-class');
+}
+
+return (
+	<button classList={classes.join(' ')} />
+);
+```

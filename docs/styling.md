@@ -48,3 +48,36 @@ return (
 	<button classList={classes.join(' ')} />
 );
 ```
+
+### Overcoming JS inline pseudo-selectors limitations
+You can work around this inconvenience by using a package named `radium`.
+```
+yarn add radium
+```
+Then
+```jsx
+import Radium from 'radium';
+
+
+const styles = {
+	backgroundColor: 'blue',
+	':hover': {
+		backgroundColor: 'green',
+	}
+};
+
+// you can also override
+style[':hover'] = {
+	backgroundColor: 'yellow',
+}
+
+const App = (props) => {
+	return (
+		<>
+			<p style={styles}>My styled paragraph</p>
+		</>
+	);
+}
+
+export default Radium(App);
+```

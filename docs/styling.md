@@ -81,3 +81,28 @@ const App = (props) => {
 
 export default Radium(App);
 ```
+
+### Using Radium for `media-queries`
+Use:
+```jsx
+import Radium, { StyleRoot } from 'radium';
+
+
+const styles = {
+	backgroundColor: 'blue',
+	'@media (min-width: 500px)': {
+		backgroundColor: 'green',
+	}
+};
+
+const App = (props) => {
+	return (
+		<StyleRoot>
+			<p style={styles}>My styled paragraph</p>
+		<StyleRoot/>
+	);
+}
+
+export default Radium(App);
+```
+**This forces us to apply a new HOC at the root component level**: `StyleRoot`.

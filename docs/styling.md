@@ -106,3 +106,22 @@ const App = (props) => {
 export default Radium(App);
 ```
 **This forces us to apply a new HOC at the root component level**: `StyleRoot`.
+
+### Styled Components
+A library that helps us style our components in our JSX files with a very simple approach. It heavily relies on a `Vanilla JavaScript` feature named `Tagged Templates`.
+```jsx
+const styles = {
+	backgroundColor: 'blue',
+	'@media (min-width: 500px)': {
+		backgroundColor: 'green',
+	}
+};
+
+const App = (props) => {
+	return (
+		<p style={styles}>My styled paragraph</p>
+	);
+}
+
+export default App;
+```

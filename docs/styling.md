@@ -109,19 +109,27 @@ export default Radium(App);
 
 ### Styled Components
 A library that helps us style our components in our JSX files with a very simple approach. It heavily relies on a `Vanilla JavaScript` feature named `Tagged Templates`.
+
 ```jsx
-const styles = {
-	backgroundColor: 'blue',
-	'@media (min-width: 500px)': {
+import React from 'react';
+import styles from 'styled-components';
+
+const StyledP = styled.p`
+	// Just regular css here
+	background-color: blue,
+	
+	@media (min-width: 500px) {
 		backgroundColor: 'green',
 	}
-};
+`
 
 const App = (props) => {
 	return (
-		<p style={styles}>My styled paragraph</p>
+		// between the backticks, you add your styles!
+		<StyledP>My styled paragraph</StyledP>
 	);
 }
 
 export default App;
 ```
+The styled we are importing basically has a method for every `html` element in `JSX`.

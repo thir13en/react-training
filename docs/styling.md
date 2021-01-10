@@ -116,10 +116,10 @@ import styles from 'styled-components';
 
 const StyledP = styled.p`
 	// Just regular css here
-	background-color: blue,
+	background-color: blue;
 	
 	@media (min-width: 500px) {
-		backgroundColor: 'green',
+		background-color: green;
 	}
 `
 
@@ -132,4 +132,28 @@ const App = (props) => {
 
 export default App;
 ```
-The styled we are importing basically has a method for every `html` element in `JSX`.
+The styled we are importing basically has a method for every `html` element in `JSX`.  
+`styled-components` takes this `css`styles and appends them in `style` tags on the top of the production build, with a class that looks like a unique `hash` and encapsulates it. This makes it an even greater solution because if they were inline styles, they will be overriding the `css cascade`.  
+Important to note you can use the `scss` syntax when using styled components:
+```jsx
+import React from 'react';
+import styles from 'styled-components';
+
+const StyledP = styled.p`
+	// Just regular css here
+	background-color: blue;
+	
+	&:hover {
+		background-color: red;
+	}
+`
+
+const App = (props) => {
+	return (
+		// between the backticks, you add your styles!
+		<StyledP>My styled paragraph</StyledP>
+	);
+}
+
+export default App;
+```

@@ -157,3 +157,28 @@ const App = (props) => {
 
 export default App;
 ```
+
+### Adding Dynamic behaviour to styled-components
+We can do so by passing dynamic props to the style components, for example:
+```jsx
+import React from 'react';
+import styles from 'styled-components';
+
+const StyledP = styled.p`
+	// Just regular css here
+	background-color: ${props => props.alt ? 'blue' : 'green'};
+	
+	&:hover {
+		background-color: red;
+	}
+`
+
+const App = (props) => {
+	return (
+		// between the backticks, you add your styles!
+		<StyledP alt={props.myDynamicProp}>My styled paragraph</StyledP>
+	);
+}
+
+export default App;
+```

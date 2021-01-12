@@ -182,3 +182,6 @@ const App = (props) => {
 
 export default App;
 ```
+
+### CSSModules
+If you're not a big fan of `CSS in JavaScript`, this package comes to the rescue. 

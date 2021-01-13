@@ -184,4 +184,35 @@ export default App;
 ```
 
 ### CSSModules
-If you're not a big fan of `CSS in JavaScript`, this package comes to the rescue. 
+If you're not a big fan of `CSS in JavaScript`, this package comes to the rescue.  
+It is important to note that for using `CSSModules` with `react-scripts < v2`, you need to `eject` your project and go to the `css` loader config to tweak the following:
+```javascript
+loader: require.resolve('css-loader'),
+options : [
+	importLoaders: 1,
+	// this is only in prod
+	minimize: true,
+	sourceMap: shouldUseSourceMap,
+	// End of only in prod
+	// This is what we add to both prod and dev:
+	modules: true,
+	// this takes care of className generation
+	localIdentName: '[name]__[local]__[hash:base64:5]',
+],
+```
+After v2, everything is handled automatically for us to use `css-modules`.  
+Now we can import default name from our css file:
+```javascript
+import React from 'react';
+import myLocal from '/my-styles.css';
+
+const App = (props) => {
+	return (
+		// between the backticks, you add your styles!
+		<p className={myLocal.className} alt={props.myDynamicProp}>My styled paragraph</StyledP>
+	);
+}
+
+export default App;
+```
+The `css-module` feature detects imports from css files and transforms it to a unique hash which is mapped from the js files to generate the pointers to the unique classes generated. This is guaranteed to be unique in our component, so there are no name clashes.

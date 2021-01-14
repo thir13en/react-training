@@ -200,11 +200,11 @@ options : [
 	localIdentName: '[name]__[local]__[hash:base64:5]',
 ],
 ```
-After v2, everything is handled automatically for us to use `css-modules`.  
+After v2, everything is handled automatically for us to use `css-modules`, the only condition is that you name your `css` files with the extension `.module.css`.  
 Now we can import default name from our css file:
 ```javascript
 import React from 'react';
-import myLocal from '/my-styles.css';
+import myLocal from '/my-styles.module.css';
 
 const App = (props) => {
 	return (
@@ -215,4 +215,31 @@ const App = (props) => {
 
 export default App;
 ```
-The `css-module` feature detects imports from css files and transforms it to a unique hash which is mapped from the js files to generate the pointers to the unique classes generated. This is guaranteed to be unique in our component, so there are no name clashes.
+The `css-module` feature detects imports from css files and transforms it to a unique hash which is mapped from the js files to generate the pointers to the unique classes generated. This is guaranteed to be unique in our component, so there are no name clashes.  
+
+Now we can assign styles dinamically accessing them, we can create a buffer array that we can join in the `className`:
+```javascript
+import React from 'react';
+import myLocal from '/my-styles.module.css';
+
+const classList = [myLocal.Blue];
+
+if (condition) {
+	classList.push(myLocal.Red);
+}
+
+const App = (props) => {
+	return (
+		// between the backticks, you add your styles!
+		<p className={myLocal.join(' ')} alt={props.myDynamicProp}>My styled paragraph</StyledP>
+	);
+}
+
+export default App;
+```
+Under the hood, `css-modules` generates uniques `classNames` that follow the pattern: `ComponentName__CssUsedClass__UniqueHash_NumericIdent`.  
+By the way, if you somehow also **want to define a global** (i.e. un-transformed) CSS class in such a `.css`  file, you can prefix the selector with `:global`:
+```css
+:global .Post { ... }
+```
+Now you can use `className="Post"` anywhere in your app.

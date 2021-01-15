@@ -3,6 +3,7 @@
 1. [Bootstrapping](bootstrapping.md)
 1. [Components](components.md)
 1. [Create React App](cra.md)
+1. [Debugging](debugging.md)
 1. [Events](events.md)
 1. [General](general.md)
 1. [Bootstrapping](bootstrapping.md)

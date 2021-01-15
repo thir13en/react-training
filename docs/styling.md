@@ -112,7 +112,7 @@ A library that helps us style our components in our JSX files with a very simple
 
 ```jsx
 import React from 'react';
-import styles from 'styled-components';
+import styled from 'styled-components';
 
 const StyledP = styled.p`
 	// Just regular css here

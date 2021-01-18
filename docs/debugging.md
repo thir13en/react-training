@@ -18,3 +18,31 @@ You can even hot change the state and props here, great to play around without h
 
 #### Profiler
 Performance features for `react`.
+
+### Error Boundaries
+Is a new feature introduced in `react>16`, the syntax looks like this:
+```jsx
+import React, { Component } from 'react';
+
+export default class ErrorBoundary extends Component {
+	state = {
+		hasError: false,
+		errorMessage: '',
+	}
+
+	// Pay attention to this lifecycle hook!
+	componentDidCatch = (error, info) => {
+		this.setState({ hasError: true, errorMessage: error });
+	}
+
+	render() {
+		if (this.state.hasError) {
+			return <h1>{this.state.errorMessage}</h1>;
+		} else {
+			return this.props.children;
+		}
+	}
+} 
+```
+Now you got a brand new component which can act as a HOC that wraps any other and formats the erros that are produced in them!  
+**Only use ErrorBoundaries when you know your code might fail**.  

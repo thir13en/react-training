@@ -17,6 +17,20 @@ const Button = () => <button style={buttonStyle}>I'm Styles</button>
 ```
 This makes the style **fully scoped** to the current component, but on the other hand **we miss the possibility of using advance css features such as `pseudo-selectors`**.
 
+### Importing Regular CSS
+You can use `css` imports to access your styles, it is important to note that a `JavaScript` object containing a mapping of all our classess will be available in our component, like this:
+```jsx
+import React from 'react';
+import styles from 'my-styles.css';
+
+const Burns = (props) => (
+	// This will apply your class in the CSS file, which is mapped as a JS object
+	<div className={styles.myClass}>
+		<h1>Runs the Termonuclear plant in Springfield</h1>
+	</div>
+);
+```
+
 ### Dynamic Styles
 With the inline styles that you can inject in your JSX code, you can evaluate them with any JavaScript expressions, or modify the contents of the style object at runtime.
 ```javascript

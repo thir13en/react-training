@@ -114,6 +114,7 @@ const Person = (props) => {
 ##### Function
 * Access to state (`useState()`)
 * no life-cycle hooks (only with `react-hooks`)
+* Access via props
 
 ##### Class-based
 * Access to state

@@ -104,3 +104,18 @@ const Person = (props) => {
 	);
 }
 ```
+
+### Dummy/Presentational/Stateless vs Smart/Container/Stateful components
+ * Dummy/Presentational/Stateless -> Component that does NOT manage app state
+ * Smart/Container/Stateful components -> Component that does manage state
+ You should have many more stateLESS than stateFUL components.
+
+#### Comparison
+##### Function
+* Access to state (`useState()`)
+* no life-cycle hooks (only with `react-hooks`)
+
+##### Class-based
+* Access to state
+* life-cycle hooks
+* Access state and props via `this`

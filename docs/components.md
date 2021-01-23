@@ -120,3 +120,17 @@ const Person = (props) => {
 * Access to state
 * life-cycle hooks
 * Access state and props via `this`
+
+### Lifecycle hooks
+#### Creation
+1. `constructor()` -> not a lifecycle hooks, rather a ES6 feature, but first anyway.
+	a. DO -> Call `super(props)`, Setup state
+	b. DONT -> Cause any side effects
+1. `getDerivedStateFromProps(props, state)` -> Whenever your props change, you can sync state with them. Very niche use cases.
+	a. DONT -> Cause any side effects
+1. `render()` -> prepare and structure your `JSX` code.
+	a. DONT -> Cause any side effects
+1. Render Child Components -> only when this is done and ALL lifecycle hooks for ALL child componets are finished, this flow for the current component lifecycle hook will continue.
+1. `componentDidMount()` -> this is the place to cause side-effects.
+	a. DO -> cause side-effects if needed. (request, write localhost...)
+	b. DONT -> Mutate state! never here!

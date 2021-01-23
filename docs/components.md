@@ -122,6 +122,9 @@ const Person = (props) => {
 * Access state and props via `this`
 
 ### Lifecycle hooks
+#### Deprecated
+1. componentWillMount -> It is no longer supported, you have to use now `getDerivedStateFromProps(props, state)` instead.
+
 #### Creation
 1. `constructor()` -> not a lifecycle hooks, rather a ES6 feature, but first anyway.
 	a. DO -> Call `super(props)`, Setup state

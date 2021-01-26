@@ -142,12 +142,12 @@ const Person = (props) => {
 1. `getDerivedStateFromProps(props, state)` -> Update your state based on outside changes, very rarele used.
 	a. DO -> Sync your component state
 	b. DONT -> Cause any side effects
-1. `shouldComponentUpdate(nextProps, nextState)` -> For performance optimizations, decide if your component should update or not.
+1. `shouldComponentUpdate(nextProps, nextState): boolean` -> For performance optimizations, decide if your component should update or not.
 1. `render()` -> prepare and structure your `JSX` code.
 1. Update Child Components -> only when this is done and ALL lifecycle hooks for ALL child componets are finished, this flow will continue.
-1. `getSnapshotBeforeUpdate(prevProps, prevState)` -> last minute DOM operations
+1. `getSnapshotBeforeUpdate(prevProps, prevState): state` -> last minute DOM operations. **The output of this method will be available in the componentDidUpdate() lfh arguments**.
 	a. DO -> DOM operations
 	b. DONT -> Cause any side effects
-1. `componentDidUpdate()` -> this is the place to cause side-effects.
+1. `componentDidUpdate()` -> this is the place to cause side-effects. If you run `getSnapshotBeforeUpdate`, you can receive here `componentDidUpdate(prevProps, prevState, snapshot)`.
 	a. DO -> cause side-effects if needed. (request, write localhost...)
 	b. DONT -> Mutate state! never here! (triggers re-render, deadlooock!)

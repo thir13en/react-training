@@ -151,3 +151,12 @@ const Person = (props) => {
 1. `componentDidUpdate()` -> this is the place to cause side-effects. If you run `getSnapshotBeforeUpdate`, you can receive here `componentDidUpdate(prevProps, prevState, snapshot)`.
 	a. DO -> cause side-effects if needed. (request, write localhost...)
 	b. DONT -> Mutate state! never here! (triggers re-render, deadlooock!)
+
+#### Legacy LCH
+1. componentWillMount
+1. componentWillReceiveProps
+
+#### Most widely used LFH
+1. componentDidMount
+1. componentDidUpdate
+1. shouldComponentUpdate

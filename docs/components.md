@@ -160,3 +160,31 @@ const Person = (props) => {
 1. componentDidMount
 1. componentDidUpdate
 1. shouldComponentUpdate
+
+### LifeCycle Hooks in functional components
+Welcome to `React Hooks` :) The two most important hook is `useState` and `useEffect`
+```javascript
+import React, { useEffect } from 'react';
+
+
+const person = (props) => {
+	// This will run in EVERY render cycke
+	useEffect(() => console.log('[Person] useEffect'));
+
+	return (
+		<p>Im  aperson and I am {props.age} years old</p>
+		<p>{props.children}</p> // Some content...
+	);
+
+}
+
+export default person;
+```
+
+#### useEffect
+Run business logic on every render cycle, runs for every update, so in this sense equals `componentDidUpdate`.  
+It also runs when the component is created, because the first render cycle is a render cycle also :), so equals also `componentDidMount`.
+`getDerivedStateFromProps` is not included here.
+
+### useState
+This one can take the place of `getDerivedStateFromProps`, with `useState` you can basically hook it to your `props` and pass data to the `state` if you need it.

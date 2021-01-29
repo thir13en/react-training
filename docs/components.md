@@ -186,5 +186,62 @@ Run business logic on every render cycle, runs for every update, so in this sens
 It also runs when the component is created, because the first render cycle is a render cycle also :), so equals also `componentDidMount`.
 `getDerivedStateFromProps` is not included here.
 
-### useState
+##### useEffect in the real life
+So `useEffect` is tricky, because it runs on mount and update cycles. **What if we only want to run certain logic in one of the two?**, you solve this with a second argument. Lets look at an example:
+```javascript
+import React, { useEffect } from 'react';
+
+
+const person = (props) => {
+	// This will run in EVERY render cycke
+	useEffect(() => {
+		console.log('[Person] useEffect');
+		// HTTP request...
+		fetch('/endpoint').then(console.log);
+	// this second argument lets you filter when this effect is triggered, in this case only when props.propName changes value
+	}, [props.propName]);
+
+	// You can have as many useEffects as you want!
+	useEffect(() => {
+		console.log('[Person] useEffect2');
+		// HTTP request...
+		fetch('/endpoint2').then(console.log);
+	}, [props.anotherProp]);
+
+	return (
+		<p>Im  aperson and I am {props.age} years old</p>
+		<p>{props.children}</p> // Some content...
+	);
+
+}
+
+export default person;
+```
+##### Simulating componentDidMount
+If we only want to run an effect the first time componnet is rendered, we can do so! Just pass an empty array
+```javascript
+import React, { useEffect } from 'react';
+
+
+const person = (props) => {
+	// This will run in EVERY render cycke
+	useEffect(() => {
+		console.log('[Person] useEffect');
+		// HTTP request...
+		fetch('/endpoint').then(console.log);
+	// This effect only runs on component first render!
+	}, []);
+
+	return (
+		<p>Im  aperson and I am {props.age} years old</p>
+		<p>{props.children}</p> // Some content...
+	);
+
+}
+
+export default person;
+```
+This basically tells `react` that this component has no prop dependencies and thus will never be refreshed!
+
+#### useState
 This one can take the place of `getDerivedStateFromProps`, with `useState` you can basically hook it to your `props` and pass data to the `state` if you need it.

@@ -164,3 +164,12 @@ const Person = (props) => {
 1. componentDidUpdate
 1. shouldComponentUpdate
 
+### Consideration regarding shouldComponentUpdate
+If you are to compare ALL component props in the `shouldComponentUpdate` LCH, there is an easy shortcut for that, you can NOT include at all this LCH and instead extend from `PureComponent`, which is a component that holds no internal state and depends entirely on it's props.
+```javascript
+import React, { PureComponent } from 'react';
+
+export default class MyComponent extends PureComponent {
+	// This component will NOT update if none of it's props changed
+}
+```

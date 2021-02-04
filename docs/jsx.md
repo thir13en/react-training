@@ -23,6 +23,20 @@ React.createElement('div', { className: 'App' }, React.createElement('h1',, null
 ### Restrictions
 Remember JSX is not html, that's why some attributes such as `class` can be used in detriment of `className`. This means that we actually are using the `tags` and `attributes` that is being provided by react. Another restriction is that we actually need to return **one** root element, so we need to wrap our content.
 
+### Workarounds to returning Adjacent JSX elements
+The first workaround is to return an `Array` of adjacent elements, as long as all the elements have a key. So either you proceed with a `map`, or you could just do like this:
+```jsx
+function App() {
+	// note the array wrapper!
+	return [
+		<h1 key="el1">Hi, I am a React Element</h1>,
+		<h1 key="el2">Hi, I am a React Element</h1>,
+		<h1 key="el3">Hi, I am a React Element</h1>,
+		<h1 key="el4">Hi, I am a React Element</h1>,
+	];
+}
+```
+
 ### Conditional rendering
 For if statements:
 ```jsx

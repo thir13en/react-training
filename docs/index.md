@@ -7,6 +7,7 @@
 1. [Events](events.md)
 1. [General](general.md)
 1. [Bootstrapping](bootstrapping.md)
+1. [HOC](hoc.md)
 1. [Hooks](hooks.md)
 1. [JSX](jsx.md)
 1. [Performance](performance.md)

@@ -1,5 +1,46 @@
 # Higher Order Components
 
+### Strucuture within the app
+It is convenient to have a `hoc` folder that contains al Higher Order Components. It is kind of convention to name `HOC` starting with a `With`, for example a component that acts as a wrapper `div` with a class can be named `WithClass`.
+```jsx
+import React from 'react';
+
+const WithClass = (props) =>
+	<div className={props.classes}>
+		{props.children}
+	</div>
+
+export default WithClass;
+```
+
+### Another syntax for HOC
+```jsx
+import React from 'react';
+
+const withClass = (WrapperComponent, className) => {
+	return (props) =>
+	<div className={className}>
+		<WrappedComponent />
+	</div>
+}
+
+export default withClass;
+```
+Usage:
+```jsx
+import React from 'react';
+import withClass from '../hoc/withClass';
+
+const MyComponent => (
+	// whatever
+);
+
+export default withClass(MyComponent, 'my-classes to-add');
+```
+Now you wrap another component in the export with it!  
+
+If your hoc is purely structural, use the logic on top, otherwise, if it adds business logic, a wrapper component is more appropriate.
+
 ### Creating a HOC to wrap adjacent elements
 ```javascript
 import React from 'react';
@@ -46,3 +87,17 @@ const heading = props =>
 export default heading;
 ```
 Which is invalid JavaScript syntax.
+
+### Now there is a build in Aux component
+We are talking about `React.Fragment`.
+
+```javascript
+import React, { Fragment } from 'react';
+const heading = props =>
+	<Fragment>
+		React.createElement('h1', {}, props.title)
+		React.createElement('h2', {}, props.subtitle);
+	</Fragment>;
+
+export default heading;
+```

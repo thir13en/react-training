@@ -20,7 +20,8 @@ import React from 'react';
 const withClass = (WrapperComponent, className) => {
 	return (props) =>
 	<div className={className}>
-		<WrappedComponent />
+		// Notice the syntax to destructure and pass props!
+		<WrappedComponent {...props}/>
 	</div>
 }
 

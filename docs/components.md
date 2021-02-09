@@ -105,6 +105,35 @@ const Person = (props) => {
 }
 ```
 
+### GOTCHA: correct use of setState
+You should **NEVER** access the state in a `setState` call, because `React` will only update the render when it has resources available **AFTER** `setState` was called, and this is asynchronous and does not guarantee sync with the view, so the `state` is not guaranteed to be the latest updated state at the moment of using it.  
+Instead, you should use the arrow function syntax for updating state:
+```jsx
+import React, { Component } from 'react';
+
+
+class People extends Component {
+	state = {
+		name: 'Mike',
+	};
+	const nameChangedHandler = (event) => {
+		this.setState((prevState, props) => ({ name: event.target, counter: prevState + 1 }));
+	}
+	return (
+		<Person name={props.name} changed={nameChangedHandler} />
+	);
+}
+
+const Person = (props) => {
+	return (
+		<>
+			<p>I am {props.name}</p>
+			<input type="text" name="name" onChange={props.changed} value={props.name}/>
+		</>
+	);
+}
+```
+
 ### Dummy/Presentational/Stateless vs Smart/Container/Stateful components
  * Dummy/Presentational/Stateless -> Component that does NOT manage app state
  * Smart/Container/Stateful components -> Component that does manage state

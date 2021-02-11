@@ -80,3 +80,59 @@ render() {
 	);
 }
 ```
+
+### Get a JSX element reference
+```javascript
+function App() {
+	return [
+		<h1 key="el1">Hi, I am a React Element</h1>,
+		<h1 key="el2">Hi, I am a React Element</h1>,
+		<h1 key="el3">Hi, I am a React Element</h1>,
+		<h1 key="el4">Hi, I am a React Element</h1>,
+		<div>
+			<input placeholder="my reference" ref={input => input.focus()} />
+		</div>,
+	];
+}
+```
+Or keep the elementReference
+```javascript
+export default class App extends Component {
+	// Since render runs BEFORE componentDidMount, we can access the reference
+	componentDidMount() {
+		this.inputElement.focus();
+	}
+
+	render() {
+		return (
+			<div>
+				<input placeholder="my reference" ref={input => this.inputElement = input} />
+			</div>,
+		);
+	};
+}
+```
+More modern approach, since react 16
+```javascript
+import React from 'react';
+
+export default class App extends Component {
+	constructor(props) {
+		super(props);
+		this.inputElementRef = React.createRef();
+	}
+
+	componentDidMount() {
+		// Here's how to access
+		this.inputElementRef.current.focus();
+	}
+
+	render() {
+		return (
+			<div>
+				<input placeholder="my reference" ref={this.inputElementRef} />
+			</div>,
+		);
+	};
+}
+```

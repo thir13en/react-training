@@ -149,3 +149,29 @@ const Car = props => {
 }
 ```
 Use state, returns an array of exactly **two** elements, the first being the state itself and the second one a `function` that allows us to update the state.
+
+### Using References with Hooks
+```javascript
+import React, { useEffect, useRef } from 'react';
+
+
+const Car = props => {
+	// Craete reference in useEffect, since it runs after every render cycle
+	// Since until we dont run the render we will not assign the reference
+	const elementRef = useRef(null);
+
+	useEffect(() => {
+		elementRef.current.click();
+	}, []);
+
+	const switchDoingHandler = () => {
+		setDoingState({
+			doing: 'resting',
+		});
+	}
+
+	return (
+		<button ref={elementRef}>We are { doingState.doing }</button>
+	);
+}
+```

@@ -19,9 +19,9 @@ export default authContext;
 Then import it in your component
 ```javascript
 import React, { Component } from 'react';
-import authContext from '../Context/AuthContext.js';
+import AuthContext from '../Context/AuthContext.js';
 
-export default class MyComponent extends Component (
+export default class MyProviderComponent extends Component (
 	loginHandler: (authenticated) => {
 		this.setState({ authenticated });
 	}
@@ -32,17 +32,41 @@ export default class MyComponent extends Component (
 				// This will override the default value you assigned before
 				// Since we are passing the state, the authcontext will update when the state updates and triggers a new render
 				// cycle
-				<AuthContext.provider value={{
+				<AuthContext.Provider value={{
 					authenticated: this.state.authenticated,
 					login: this.loginHandler,
 				}} >
 					<h1>Authenticated!<h1>
-				</AuthContext.provider>
+				</AuthContext.Provider>
 			</div>
 		);
 	};
 );
 
-export default authContext;
+export default MyProviderComponent;
 ```
 React will re-render when state or props change, **only changing something in a Context will NOT trigger a render cycle**. 
+```javascript
+import React, { Component } from 'react';
+import AuthContext from '../Context/AuthContext.js';
+
+export default class MyConsumerComponent extends Component (
+	render() {
+		return (
+			<div>
+				// Content is a function that returns JSX code
+				<AuthContext.Consumer>
+					{(context) => (
+						<div>	
+							<h1>{context.authenticated ? 'Authenticated!' : 'Login to continue...'}<h1>
+							{context.authenticated && <button onClick={context.login}>Login</button>}
+						</div>
+					)}
+				</AuthContext.Consumer>
+			</div>
+		);
+	};
+);
+
+export default MyConsumerComponent;
+```

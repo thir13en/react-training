@@ -21,7 +21,7 @@ Then import it in your component
 import React, { Component } from 'react';
 import AuthContext from '../Context/AuthContext.js';
 
-export default class MyProviderComponent extends Component (
+export default class MyProviderComponent extends Component {
 	loginHandler: (authenticated) => {
 		this.setState({ authenticated });
 	}
@@ -41,16 +41,15 @@ export default class MyProviderComponent extends Component (
 			</div>
 		);
 	};
-);
-
-export default MyProviderComponent;
+};
 ```
 React will re-render when state or props change, **only changing something in a Context will NOT trigger a render cycle**. 
+
 ```javascript
 import React, { Component } from 'react';
 import AuthContext from '../Context/AuthContext.js';
 
-export default class MyConsumerComponent extends Component (
+export default class MyConsumerComponent extends Component {
 	render() {
 		return (
 			<div>
@@ -66,7 +65,47 @@ export default class MyConsumerComponent extends Component (
 			</div>
 		);
 	};
-);
+};
+```
 
-export default MyConsumerComponent;
+#### A more elegant way
+Then import it in your component
+```javascript
+import React, { Component } from 'react';
+import AuthContext from '../Context/AuthContext.js';
+
+export default class MyConsumerComponent extends Component {
+	// This syntax must match EXACTLY
+	static contextType = AuthContext;
+	// Now you can access a new property in your component, the this.context
+
+	render() {
+		return (
+			<div>
+				<div>	
+					<h1>{this.context.authenticated ? 'Authenticated!' : 'Login to continue...'}<h1>
+					{this.context.authenticated && <button onClick={this.context.login}>Login</button>}
+				</div>
+			</div>
+		);
+	};
+};
+```
+In the case of functional componets you can use the `useContext` hook:
+```javascript
+import React, { useContext } from 'react';
+import AuthContext from '../Context/AuthContext.js';
+
+const MyConsumerComponent => (props) => {
+	const authContext = useContext(AuthContext);
+
+	return (
+		<div>
+			<div>	
+				<h1>{authContext.authenticated ? 'Authenticated!' : 'Login to continue...'}<h1>
+				{authContext.authenticated && <button onClick={authContext.login}>Login</button>}
+			</div>
+		</div>
+	);
+};
 ```

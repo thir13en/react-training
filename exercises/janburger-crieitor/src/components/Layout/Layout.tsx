@@ -1,9 +1,12 @@
 import React from 'react';
+import styles from './Layout.module.scss';
 
 const Layout = (props: any) => (
 	<>
 		<div>Toolbar</div>
-		<main>{props.children}</main>
+		<main className={styles.content}>
+			{props.children}
+		</main>
 	</>
 );
 

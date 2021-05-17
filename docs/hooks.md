@@ -2,7 +2,7 @@
 
 
 ### LifeCycle Hooks in functional components
-Welcome to `React Hooks` :) The two most important hook is `useState` and `useEffect`
+Welcome to `React Hooks`. The two most important hook are `useState` and `useEffect`.
 ```javascript
 import React, { useEffect } from 'react';
 

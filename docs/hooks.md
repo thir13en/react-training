@@ -23,7 +23,7 @@ export default person;
 
 ### useEffect
 Run business logic on every render cycle, runs for every update, so in this sense equals `componentDidUpdate`.  
-It also runs when the component is created, because the first render cycle is a render cycle also :), so equals also `componentDidMount`.
+It also runs when the component is created, because the first render cycle is a render cycle also, so equals also `componentDidMount`.
 `getDerivedStateFromProps` is not included here.
 
 ##### useEffect in the real life

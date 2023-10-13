@@ -14,6 +14,7 @@
 1. [State](state.md)
 1. [Styling](styling.md)
 1. [Virtual DOM](virtual-dom.md)
+1. [React Training](react-training.md)
 
 // REASON FOR COMPONENTS TO RENDER (VDOM)
 // - (1) my own state change

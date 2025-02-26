@@ -16,9 +16,12 @@ function App() {
 
 Would be transpiled to:
 ```javascript
-// the second argument is config
+// the second argument is props, which includes the native html properties such as class (className in JSX property syntax)
 React.createElement('div', { className: 'App' }, React.createElement('h1',, null, 'Hi, Im a React App'));
 ```
+As we can see, `React.createElement` receives three slot parameters that correspond to: the element to be created, the props that it will receive and the children that will be rendered in the component tree (zero to many). The only compulsory parameter is the first one.
+
+It could be the case that you would work in a project that sticks to the strategy of pure JS in case you needed to work in a build-less project.
 
 ### Restrictions
 Remember JSX is not html, that's why some attributes such as `class` can be used in detriment of `className`. This means that we actually are using the `tags` and `attributes` that is being provided by react. Another restriction is that we actually need to return **one** root element, so we need to wrap our content.

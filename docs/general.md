@@ -1,42 +1,42 @@
 Improve the notes for my course with interesting additions and better formatting:
 
-# General
+---
 
-A JavaScript library for building web and native user interfaces.
+# General Overview
 
-### Main features
-It abstracts a lot of complexity from building UI libraries vs Vanilla JavaScript. It understands UI as a function of your app state and updates elements of it accordingly.
+React is a JavaScript library for building web and native user interfaces. It abstracts away much of the complexity of UI development, letting you focus on building components as functions of your app state.
 
-#### Declarative
-Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.
+## Main Features
 
-#### Component-Based
-Build encapsulated components that manage their own state, then compose them to make complex UIs.
+- **Declarative:** Design simple views for each state, and React updates and renders the right components when your data changes.
+- **Component-Based:** Build encapsulated components that manage their own state, then compose them to make complex UIs.
+- **Composable:** Integrates easily with other libraries or frameworks.
+- **JSX:** Write HTML-like markup directly in your JavaScript files.
 
-#### Composable
-Does not make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code.
+## Motivation
+- Easily manage UI state
+- Focus on business logic, delegate UI management
+- Huge community and ecosystem
 
-#### JSX
-Has an ad-hoc language html-like that allows you to build markup interfaces withing a JavaScript file.
+## Core Building Blocks
+- `React`: The UI library itself
+- `ReactDOM`: Renders components to the browser DOM
 
-### Motivation
-* Easily manage UI state
-* Focus on business logic, delegate the UI management
-* Huge community
+## Example: Binding App with ReactDOM
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
 
-### The backbone
-React is a Javascript library for creating fast and component based UIs, the two main building blocks of it are:
-* `React`: The UI library itself
-* `React-DOM`: The connector that renders the components to the real browser DOM
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+```
 
-### Binding our app with ReactDOM
-Would look like:
-`ReactDOM.render(, document.querySelector('#multiverse'));`
-So:
-`ReactDOM.render(, document.querySelector(''));`
+---
 
-### Comparing a VanillaJS implementation vs React implementation of a use case
-#### VanillaJS
+## VanillaJS vs React Example
+
+### VanillaJS
 ```javascript
 const content = [
  [
@@ -100,69 +100,80 @@ btnWhyReact.addEventListener("click", handleClick);
 btnCoreFeature.addEventListener("click", handleClick);
 btnResources.addEventListener("click", handleClick);
 ```
-#### React
+### React (Functional Component)
 ```jsx
 import { useState } from "react";
-import "./styles.css";
 
 const content = [
- [
- "React is extremely popular",
- "It makes building complex, interactive UIs a breeze",
- "It's powerful & flexible",
- "It has a very active and versatile ecosystem"
- ],
- [
- "Components, JSX & Props",
- "State",
- "Hooks (e.g., useEffect())",
- "Dynamic rendering"
- ],
- [
- "Official web page (react.dev)",
- "Next.js (Fullstack framework)",
- "React Native (build native mobile apps with React)"
- ]
+	[
+		"React is extremely popular",
+		"It makes building complex, interactive UIs a breeze",
+		"It's powerful & flexible",
+		"It has a very active and versatile ecosystem"
+	],
+	[
+		"Components, JSX & Props",
+		"State",
+		"Hooks (e.g., useEffect())",
+		"Dynamic rendering"
+	],
+	[
+		"Official web page (react.dev)",
+		"Next.js (Fullstack framework)",
+		"React Native (build native mobile apps with React)"
+	]
 ];
 
 export default function App() {
- const [activeContentIndex, setActiveContentIndex] = useState(0);
-
- return (
- 
- 
- 
- 
- React.js
- i.e., using the React library for rendering the UI
- 
- 
-
- 
- 
- setActiveContentIndex(0)}
- >
- Why React?
- 
- setActiveContentIndex(1)}
- >
- Core Features
- 
- setActiveContentIndex(2)}
- >
- Related Resources
- 
- 
- 
- <ul>
- {content[activeContentIndex].map((item) => (
- <li>{item}</li>
- ))}
- </ul>
- 
- 
- 
- );
+	const [activeContentIndex, setActiveContentIndex] = useState(0);
+	return (
+		<div>
+			<h1>React.js</h1>
+			<button onClick={() => setActiveContentIndex(0)}>Why React?</button>
+			<button onClick={() => setActiveContentIndex(1)}>Core Features</button>
+			<button onClick={() => setActiveContentIndex(2)}>Related Resources</button>
+			<ul>
+				{content[activeContentIndex].map((item) => (
+					<li key={item}>{item}</li>
+				))}
+			</ul>
+		</div>
+	);
 }
-
 ```
+
+---
+
+## Best Practices
+- Prefer functional components and hooks for new code
+- Use clear, descriptive names for components and props
+- Keep components small and focused
+- Use PropTypes or TypeScript for type safety
+- Write tests for critical logic
+
+## Common Pitfalls
+- Avoid mutating state directly; always use state setters
+- Don’t use index as key in lists unless items are static
+- Remember that setState is asynchronous
+
+## Accessibility
+- Use semantic HTML elements
+- Add ARIA attributes where necessary
+- Ensure keyboard navigation works for interactive elements
+
+## Further Reading
+- [JSX](jsx.md)
+- [Hooks](hooks/index.md)
+- [State Management](state.md)
+- [Performance](performance.md)
+
+---
+
+## Exercises
+1. Refactor a class component to a functional component using hooks.
+2. Build a simple counter app with useState.
+3. Add PropTypes to a component and test type errors.
+
+---
+
+_For more details, see each section above. Practice exercises are included at the end of each note._

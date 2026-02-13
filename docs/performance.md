@@ -1,33 +1,49 @@
-# Performance Rules
 
-### Do what you can out of the JSX context
-JSX expressions are more expensice to evaluate, so try to keep all logic as pure `JavaScript` whenever possible.
+# Performance Optimization in React
 
-### Avoid unnecessary re-renders with React Memo
-React Memo, uses `memoization`, which is a way of keeping in memory the state of a certain element and decide whether it is affected by changes in the state:
-```javascript
-import React, { useEffect } from 'react';
+Optimizing performance in React apps ensures smooth user experiences, especially as your app grows.
 
+## General Tips
+- Move logic outside of JSX expressions when possible
+- Keep components small and focused
+- Minimize state and keep it as local as possible
 
-const person = (props) => {
-	// This will run in EVERY render cycke
-	useEffect(() => {
-		console.log('[Person] useEffect');
-		// HTTP request...
-		fetch('/endpoint').then(console.log);
-	// This effect only runs on component first render!
-	}, []);
+## Avoid Unnecessary Re-renders
+Use `React.memo` to memoize functional components so they only re-render when their props change.
 
+### Example
+```jsx
+import React from 'react';
+
+const Person = React.memo(function Person(props) {
 	return (
-		<p>Im  aperson and I am {props.age} years old</p>
-		<p>{props.children}</p> // Some content...
+		<p>I am {props.name} and I am {props.age} years old</p>
 	);
-
-}
-
-// This will automagically add memoization to the component, so will only re-render when props change
-export default React.memo(person);
+});
 ```
 
-### React Memo and shouldComponentUpdate
-Keep in mind to only use them when really necessary, because the extra logic that they run does **NOT** always makes sense and can be expensive.
+## useMemo and useCallback
+- `useMemo`: Memoize expensive calculations
+- `useCallback`: Memoize callback functions to prevent unnecessary re-renders of child components
+
+### Example
+```jsx
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+const memoizedCallback = useCallback(() => { doSomething(a); }, [a]);
+```
+
+## When to Optimize
+Only optimize when you notice performance issues. Premature optimization can add unnecessary complexity.
+
+## Best Practices
+- Profile your app with React DevTools
+- Use lazy loading for large components (React.lazy, Suspense)
+- Avoid unnecessary state in parent components
+
+## Exercises
+1. Refactor a component to use `React.memo` and measure the difference
+2. Use `useMemo` to optimize a slow calculation in a component
+
+---
+
+_See also: [Virtual DOM](virtual-dom.md), [Hooks](hooks/index.md)_
